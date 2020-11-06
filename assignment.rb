@@ -1,57 +1,67 @@
-module Action
-    def eat
-        puts "I love to eat! My color is #{@color}"
-    end
+#Ruby program of polymorphism using Duck typing 
+  
 
-    def sleep
-        puts "I spend so much time in sleeping, I am color #{@color}"
-    end
+class Siamese
+   def breed
+     puts 'I am siamese'
+   end
+ end
+ 
+ class Persian
+   def breed
+     puts 'I am Persian'
+   end
+ end
+
+
+ class CheckBreed
+   def breed(cat)
+     cat.breed
+   end
+ end
+
+katniss = CheckBreed.new
+puts 'Holding a siamese cat'
+katniss.breed(Siamese.new)
+
+
+kat = CheckBreed.new
+puts 'Holding a persian cat'
+kat.breed(Persian.new)
+
+
+
+
+# Ruby program of Polymorphism using inheritance 
+class Animals 
+	def animal_type 
+		puts "Birds"
+	end
 end
 
-class Cat
-    def initialize(name, breed, color)
-        @name = name
-        @type = type
-        @color = color
-    end
-    
-    def type(breed)
-        breed.type
-    end
+
+class Frogs < Animals 
+	def animal_type 
+		puts "Amphibian"
+	end
+end
+ 
+class Rabbits < Animals 
+	def animal_type 
+		puts "Mammals"
+	end
 end
 
+# Creating object 
+animal = Animals.new
+animal.animal_type() 
 
-class PersianCat < Cat
-    include Action
-    def talk
-        puts "Meow! I have round face and short muzzle."
-    end
+# Creating different object calling same function 
+animal = Frogs.new
+animal.animal_type() 
 
-    def type
-        puts "is #{@breed}"
-    end
-end
+# Creating different object calling same function 
+animal = Rabbits.new
+animal.animal_type() 
 
-class SiameseCat < Cat
-    include Action
-    def talk
-        puts "Meow! I have triangular head shape and large ears;"
-    end
 
-    
-    def type
-        puts "is #{@breed}"
-    end
-end
-
-persian = PersianCat.new('Persia', 'Persian Cat', 'White')
-persian.talk
-persian.type
-persian.eat
-persian.sleep
-
-siamese = SiameseCat.new('Xian', 'Siamese Cat', 'Brown')
-siamese.talk
-siamese.type
-siamese.eat
-siamese.sleep
